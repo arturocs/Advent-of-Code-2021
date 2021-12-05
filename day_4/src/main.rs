@@ -7,16 +7,20 @@ fn sum_unmarked_numbers(board: &Matrix5<(i32, bool)>) -> i32 {
         .sum()
 }
 
-fn check_boards(boards: &[Matrix5<(i32, bool)>]) -> Option<(i32, usize)> {
-    boards.iter().enumerate().find_map(|(n, board)| {
-        if board.row_iter().any(|row| row.iter().all(|i| i.1))
-            || board.column_iter().any(|col| col.iter().all(|i| i.1))
-        {
-            Some((sum_unmarked_numbers(board), n))
-        } else {
-            None
-        }
-    })
+fn check_boards(boards: &[Matrix5<(i32, bool)>]) -> Vec<(i32, usize)> {
+    boards
+        .iter()
+        .enumerate()
+        .filter_map(|(n, board)| {
+            if board.row_iter().any(|row| row.iter().all(|i| i.1))
+                || board.column_iter().any(|col| col.iter().all(|i| i.1))
+            {
+                Some((sum_unmarked_numbers(board), n))
+            } else {
+                None
+            }
+        })
+        .collect()
 }
 
 fn update_boards(boards: &mut [Matrix5<(i32, bool)>], n: i32) {
@@ -38,19 +42,20 @@ fn main() {
         .map(|i| Matrix5::from_column_slice(i))
         .collect();
 
-    let results: Vec<_> = draw_numbers
-        .filter_map(|n| {
+    let results: Vec<Vec<_>> = draw_numbers
+        .map(|n| {
             update_boards(&mut boards, n);
-            check_boards(&boards).map(|(sum, i)| {
-                boards[i] = Matrix5::repeat((-1, false));
-                sum * n
-            })
+            check_boards(&boards)
+                .into_iter()
+                .map(|(sum, i)| {
+                    boards[i] = Matrix5::repeat((-1, false));
+                    sum * n
+                })
+                .collect()
         })
-        .filter(|&i| i != 0)
+        .filter(|i: &Vec<_>| !i.is_empty())
         .collect();
 
-    dbg!(&results);
-    dbg!(&results.len());
-    println!("Part one: {}", results.first().unwrap());
-    println!("Part two: {}", results.last().unwrap());
+    println!("Part one: {:?}", results.first().unwrap());
+    println!("Part two: {:?}", results.last().unwrap());
 }
