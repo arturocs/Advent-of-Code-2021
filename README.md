@@ -4,4 +4,5 @@
 * [Day 2: Dive!](./day_2)
 * [Day 3: Binary Diagnostic](./day_3)
 * [Day 4: Giant Squid](./day_4)
+* [Day 5: Hydrothermal Venture](./day_5)
 
