@@ -5,4 +5,5 @@
 * [Day 3: Binary Diagnostic](./day_3)
 * [Day 4: Giant Squid](./day_4)
 * [Day 5: Hydrothermal Venture](./day_5)
+* [Day 6: Lanternfish](./day_6)
 
