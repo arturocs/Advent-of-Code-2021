@@ -13,7 +13,7 @@ fn main() {
         .unwrap();
 
     let result_2: i32 = (min..max)
-        .map(|i| input.iter().map(|&j| (0..=(i - j).abs())).flatten().sum())
+        .map(|i| input.iter().flat_map(|&j| (0..=(i - j).abs())).sum())
         .min()
         .unwrap();
 
