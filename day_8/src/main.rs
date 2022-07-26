@@ -39,6 +39,7 @@ fn generate_segment_dictionary(patterns: &[&str]) -> BTreeMap<i32, BTreeSet<char
         .collect();
     dictionary.insert(3, three);
 
+    // The segments used by 3 and 4 are the same as those used by 9
     let nine: BTreeSet<_> = dictionary[&4].union(&dictionary[&3]).cloned().collect();
     dictionary.insert(9, nine);
 
@@ -67,6 +68,7 @@ fn generate_segment_dictionary(patterns: &[&str]) -> BTreeMap<i32, BTreeSet<char
         .collect();
     dictionary.insert(5, five);
 
+    // The middle segment is the only one that is shared between 2 and the difference between the segments of 4 and 7
     let middle_segment = *dictionary[&4]
         .difference(&dictionary[&7])
         .cloned()
