@@ -78,8 +78,6 @@ Because the digits `1`, `4`, `7`, and `8` each use a unique number of segments, 
 
 Your puzzle answer was `440`.
 
-The first half of this puzzle is complete! It provides one gold star: *
-
 ## --- Part Two ---
 
 Through a little deduction, you should now be able to determine the remaining digits. Consider again the first example above:
@@ -138,4 +136,6 @@ Following this same process for each entry in the second, larger  example above,
 
 Adding all of the output values in this larger example produces `*61229*`.
 
-For each entry, determine all of the wire/segment connections and decode the four-digit output values. *What do you get if you add up all of the output values?* 
+For each entry, determine all of the wire/segment connections and decode the four-digit output values. *What do you get if you add up all of the output values?*
+
+Your puzzle answer was `1046281`.
